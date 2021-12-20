@@ -15,12 +15,16 @@ function createBox(containerBox , numero , maxScore){
     const newBox = document.createElement('div')
     newBox.className = 'box';
     containerBox.append(newBox);
+    // if(bombs.includes(numero)){
+    //     this.classList.add('bomb')
+    // }
     newBox.addEventListener('click',function(){
         this.classList.add('azzurro');
         newBox.innerText=numero;
         score++;
         if(bombs.includes(numero)){
             this.classList.add('red');
+            containerBox.classList.add('lost');
             alert("GAME OVER ! il tuo score è di: "+[score - 1]);
             alert("Restart e inizia una nuova partita");
         }
@@ -59,7 +63,7 @@ button1.addEventListener('click',function(){
     container.classList.remove('medium-container');
     container.classList.remove('hard-container');
     for(let i=1 ; i <= 100 ; i++){
-        createBox(container , i,maxScore)
+        createBox(container , i , maxScore);
     }
     while(bombs.length < 16){
         const randomBomb = randomNumber(1 , 100);
@@ -67,7 +71,7 @@ button1.addEventListener('click',function(){
             bombs.push(randomBomb);
         }
     }
-    
+   
 })
 //se utente sceglie livello 2 
 //genera numeri  da 1 a 81
