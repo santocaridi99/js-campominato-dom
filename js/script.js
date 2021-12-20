@@ -21,11 +21,11 @@ function createBox(containerBox , numero , maxScore){
         score++;
         if(bombs.includes(numero)){
             this.classList.add('red');
-            alert("GAME OVER ! il tuo score è di: "+score)
-            alert("Resetta il gioco")
+            alert("GAME OVER ! il tuo score è di: "+[score - 1]);
+            alert("Restart e inizia una nuova partita");
         }
         if (score === maxScore){
-            alert("Complimenti hai vinto. il tuo score è di"+score);
+            alert("Complimenti hai vinto. il tuo score è di: "+score);
             alert("Restart e inizia una nuova partita")
         }
     })
