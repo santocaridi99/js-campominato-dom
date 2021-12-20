@@ -11,15 +11,22 @@ La partita termina quando il giocatore clicca su una bomba o raggiunge il numero
 Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba.
 */
 //funzione per creare i  quadratini (quando li clicco si colorano di azzurro)
-function createBox(containerBox , numero){
+function createBox(containerBox , numero , maxScore){
     const newBox = document.createElement('div')
     newBox.className = 'box';
     containerBox.append(newBox);
     newBox.addEventListener('click',function(){
         this.classList.add('azzurro');
         newBox.innerText=numero;
+        score++;
         if(bombs.includes(numero)){
             this.classList.add('red');
+            alert("GAME OVER ! il tuo score è di: "+score)
+            alert("Resetta il gioco")
+        }
+        if (score === maxScore){
+            alert("Complimenti hai vinto. il tuo score è di"+score);
+            alert("Restart e inizia una nuova partita")
         }
     })
 }
@@ -28,6 +35,8 @@ function randomNumber(min , max){
     let random = Math.floor(Math.random() * ((max + 1) - min) )+ min;
     return random;
 }
+//dichiaro variabile score come un contatore 
+let score = 0;
 //dichiaro array delle bombe
 let bombs = [];
 //dichiaro variabili dei bottoni per scelta del livello
@@ -43,11 +52,14 @@ button1.addEventListener('click',function(){
     container.innerHTML='';
     //svuoto array ogni volta
     bombs = [];
+    //dichiaro variabile maxScore per indicare punteggio massimo raggiungibile
+    //100-16
+    const maxScore = 84;
     container.classList.add('easy-container');
     container.classList.remove('medium-container');
     container.classList.remove('hard-container');
     for(let i=1 ; i <= 100 ; i++){
-        createBox(container , i)
+        createBox(container , i,maxScore)
     }
     while(bombs.length < 16){
         const randomBomb = randomNumber(1 , 100);
@@ -55,6 +67,7 @@ button1.addEventListener('click',function(){
             bombs.push(randomBomb);
         }
     }
+    
 })
 //se utente sceglie livello 2 
 //genera numeri  da 1 a 81
@@ -63,11 +76,14 @@ button2.addEventListener('click',function(){
     container.innerHTML='';
     //svuoto array ogni volta
     bombs = [];
+    //dichiaro variabile maxScore per indicare punteggio massimo raggiungibile
+    //81-16
+    const maxScore = 65;
     container.classList.add('medium-container');
     container.classList.remove('hard-container');
     container.classList.remove('easy-container');
     for(let i=1 ; i <= 81 ; i++){
-        createBox(container , i)
+        createBox(container , i , maxScore)
     }
     while(bombs.length < 16){
         const randomBomb = randomNumber(1 , 81);
@@ -83,11 +99,14 @@ button3.addEventListener('click',function(){
     container.innerHTML='';
     //svuoto array ogni volta
     bombs = [];
+    //dichiaro variabile maxScore per indicare punteggio massimo raggiungibile
+    //49-16
+    const maxScore = 33;
     container.classList.add('hard-container');
     container.classList.remove('medium-container');
     container.classList.remove('easy-container');
     for(let i=1 ; i <= 49 ; i++){
-        createBox(container , i)
+        createBox(container , i , maxScore)
     }
     while(bombs.length < 16){
         const randomBomb = randomNumber(1 , 49);
