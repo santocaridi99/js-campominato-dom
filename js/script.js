@@ -11,13 +11,10 @@ La partita termina quando il giocatore clicca su una bomba o raggiunge il numero
 Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba.
 */
 //funzione per creare i  quadratini (quando li clicco si colorano di azzurro)
-function createBox(containerBox , numero , maxScore){
+function createBox(containerBox , numero , maxScore ){
     const newBox = document.createElement('div')
     newBox.className = 'box';
     containerBox.append(newBox);
-    // if(bombs.includes(numero)){
-    //     this.classList.add('bomb')
-    // }
     newBox.addEventListener('click',function(){
         this.classList.add('azzurro');
         newBox.innerText=numero;
@@ -56,6 +53,8 @@ button1.addEventListener('click',function(){
     container.innerHTML='';
     //svuoto array ogni volta
     bombs = [];
+    //reset score
+    score = 0;
     //dichiaro variabile maxScore per indicare punteggio massimo raggiungibile
     //100-16
     const maxScore = 84;
@@ -71,7 +70,6 @@ button1.addEventListener('click',function(){
             bombs.push(randomBomb);
         }
     }
-   
 })
 //se utente sceglie livello 2 
 //genera numeri  da 1 a 81
@@ -80,6 +78,7 @@ button2.addEventListener('click',function(){
     container.innerHTML='';
     //svuoto array ogni volta
     bombs = [];
+    score = 0;
     //dichiaro variabile maxScore per indicare punteggio massimo raggiungibile
     //81-16
     const maxScore = 65;
@@ -103,6 +102,7 @@ button3.addEventListener('click',function(){
     container.innerHTML='';
     //svuoto array ogni volta
     bombs = [];
+    score = 0;
     //dichiaro variabile maxScore per indicare punteggio massimo raggiungibile
     //49-16
     const maxScore = 33;

@@ -21,8 +21,9 @@
 .red{
     background-color: red;
 }
-.lost.bomb{
+.lost>.bomb{
     background-color: red;
+    border: 2px solid rgb(76, 250, 76);
 }
 
 .container.easy-container{
